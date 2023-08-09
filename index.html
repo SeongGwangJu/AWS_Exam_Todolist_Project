@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./CSS/reset.css">
+    <link rel="stylesheet" href="/CSS/reset.css">
     <link rel="stylesheet" href="/CSS/common.css">
+    <link rel="stylesheet" href="/CSS/calendar.css">
+    <link rel="stylesheet" href="/CSS/list-area.css">
     <style>
         body {
             background-image: url('/image/background.png');
@@ -26,7 +28,29 @@
             <div class="calendar-container">
                 <div class="calendar-info-container">
                     <i class="fa-regular fa-calendar"></i>
-                    <span class="calendar-title">2023.08 <span>
+                    <button id="beforebtn" class="calendar-before-button cal-btn">
+                        <i class="fa-solid fa-chevron-left fa-lg"></i></button>
+                    <span class="calendar-month">2023.08</span>
+                    <button id="nextbtn" class="calendar-next-button cal-btn">
+                        <i class="fa-solid fa-chevron-right fa-lg"></i></button>
+                </div>
+                <div class="calendar-wrapper">
+                    <table class="calendar-table">
+                        <thead class="calendar-thead">
+                            <tr>
+                                <th>일</th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                                <th>토</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendar-body" class="calendar-tbody">
+
+                        </tbody>
+                    </table>
                 </div>
                     
             </div>
@@ -43,7 +67,7 @@
                     </div>
                 </header>
                 <ul class="todolist-main-container">
-                    <!-- list : 1 -->
+                    <!--                 list : 1 -->
                     <li class="todolist-items">
                         <div class="item-left">
                           <i class="fa-regular fa-square"></i>
@@ -59,8 +83,8 @@
                             <div class="remove-button">
                                 <i class="fa-solid fa-xmark"></i>
                             </div>
-
                         </div>
+
                     </li>
                     <!--  -->
                                         <!--  -->
@@ -223,11 +247,64 @@
                         </div>
                     </li>
                     <!--  -->
+                    <li class="todolist-items">
+                        <div class="item-left">
+                          <i class="fa-regular fa-square"></i>
+                        </div>
+                        <div class="item-center">
+                            <pre class="todolist-content">엽떡</pre>
+                            <p class="todolist-date">08.09</p>
+                            <div class="edit-button">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="remove-button">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+
+                        </div>
+                    </li>
+                    <!--  -->
+                    <li class="todolist-items">
+                        <div class="item-left">
+                          <i class="fa-regular fa-square"></i>
+                        </div>
+                        <div class="item-center">
+                            <pre class="todolist-content">돈까스</pre>
+                            <p class="todolist-date">08.09</p>
+                            <div class="edit-button">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="remove-button">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+
+                        </div>
+                    </li>
+                    <!--  -->
                 </ul>
+                <footer>
+                    <div class="todo-current">
+                        <div class="remaining-todo">12 items lefts</div>
+                        <div class="todo-view">
+                            <span class="view-all">All</span>
+                            <span class="view-active">Active</span>
+                            <span class="view-completed">Completed</span>
+                        </div>
+                        
+                        <div class="clear-completed"> Clear</div>
+                </footer>
             </div>
         </main>
     
     </div>
+
+
+
+    <script src="./JS/calendar.js"></script>
 </div>
 </body>
 </html>

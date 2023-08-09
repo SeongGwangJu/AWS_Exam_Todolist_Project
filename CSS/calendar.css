@@ -1,0 +1,107 @@
+
+.calendar-container{
+    justify-self: center;
+    align-self: center;
+    position: relative;
+    margin: 0% 2% 1% 2%;
+    /* border: 0.5px solid black; */
+    border-radius: 12px;
+    padding: 0%;
+    width: 45%;
+    height: 95%;
+}
+
+.calendar-info-container{
+    /* border: 0.5px solid black; */
+    display: flexbox;
+    margin-bottom: 2%;
+    align-items: center;
+}
+
+.fa-calendar{
+    color: white;
+    display: inline;
+    font-size: 3.5em;
+    margin: 1% 3% 1% 0%;
+}
+
+.calendar-month {
+    display: inline;
+    margin: 1% 3% 0% 3%;
+    font-size: 3em;
+    font-weight: 600;
+    cursor: default;
+}
+
+.cal-btn{
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    color: #ffffff60;
+    font-size: 24px;
+}
+
+.cal-btn:hover{
+    color: #b22452;
+}
+
+.calendar-wrapper {
+    /* border: 0.5px solid black; */
+    display: flex;
+    width: 100%;
+    height: 89%;
+}
+
+.calendar-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-thead th {
+    padding: 30px 10px 20px 10px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.calendar-thead th:first-child {
+    color:rgb(231, 15, 15);
+}
+
+.calendar-thead th:nth-child(7) {
+    color:rgb(36, 36, 207);
+}
+
+.calnedar-tbody td {
+    width: 17%;
+    height: 17%;
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+
+}
+
+.calendar-tbody td > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.calendar-tbody td > div > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+}
+
+.calendar-tbody td > div > span:hover {
+    background-color: #ffffff30;
+    border-radius: 40%;
+    color: white;
+}
