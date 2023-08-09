@@ -1,0 +1,241 @@
+* {
+    box-sizing: border-box;
+    font-size: 14px;
+    color: white;
+}
+.root{
+    border: 2px solid white;
+    border-radius: 12px;
+    width: 98vw;
+    height: 95vh;
+}
+.sidebar{
+    position: relative;
+    background-color: #00000000;
+    display: inline-block;
+}
+.fa-bars{
+    font-size: 40px;
+}
+.sidebar-toggle-button {
+    width: 80px;
+    height: 80px;
+    background-color: #00000000;
+    border: 0px;
+}
+.container {
+    position: relative;
+    margin: 0px 80px 0px 80px;
+    padding: 0px;
+    border: 0.5px solid black;
+    border-radius: 12px;
+    width: 95%;
+    height: 90%;
+}
+
+.main-container {
+    display: flex;
+    margin: 0px;
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+
+}
+
+.calendar-container{
+    justify-self: center;
+    align-self: center;
+    position: relative;
+    margin: 0% 2% 1% 2%;
+    border: 0.5px solid black;
+    border-radius: 12px;
+    padding:1% 1% 1% 0%;
+    width: 45%;
+    height: 95%;
+}
+
+.calendar-info-container{
+    border: 0.5px solid black;
+}
+
+.fa-calendar{
+    color: white;
+    display: inline;
+    font-size: 56px;
+    margin-top: 1%;
+}
+
+.calendar-title {
+    display: inline;
+    margin: 1% 0px 2% 2%;
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.todo-container{
+    justify-self: center;
+    align-self: center;
+    position: relative;
+    margin: 0% 0% 1% 2%;
+    padding: 0% 2% 2% 2%; 
+    border: 0.5px solid black;
+    border-radius: 12px;
+    width: 50%;
+    height: 95%;
+}
+
+.todo-title {
+    margin: 2% 0px 3% 0px;
+    font-size: 48px;
+}
+
+
+.todolist-header-items{
+    display: flex;
+    padding: 0px;
+    border: 1px solid #ffffff80;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    height: 60px;
+}
+
+.todolist-header-items:focus{
+    border: 1px solid #ffffff;
+    placeholder:
+}
+
+.text-input {
+    border:0px;
+    padding: 17px 5px 15px 15px;
+    background-color: #00000000;
+    width: 100%;
+    height: 100%;
+    font-size: 28px;
+}
+
+.text-input:focus::placeholder {
+    color:transparent;
+}
+
+.text-input::placeholder {
+    color: white;
+    font-style: italic;
+    font-size: 28px;
+    text-align: left;
+    justify-content: center;
+  }
+
+.todolist-plus-icon{
+    display: absolute;
+    top: 10%;
+    bottom: 20%;
+    left: 10%;
+    right: 10%;
+    padding: 1% 1% 1% 1%;
+    background-color: transparent;
+    border: 0px;
+}
+
+.fa-plus {
+    font-size: 32px;
+    color:#ffffff70
+}
+
+.fa-plus:hover {
+    color:#b22452
+}
+.todolist-main-container{
+    border-radius: 5px;
+    width: 100%;
+    height: 80%;
+    padding: 0% 0% 10% 0%;
+    list-style-type: none;
+    overflow-y: scroll;
+}
+
+.todolist-main-container::-webkit-scrollbar {
+    margin-right: 10px;
+    width: 10px;
+}
+
+.todolist-main-container::-webkit-scrollbar-thumb {
+    background-color: #ffffff30;
+    border-radius: 3px;
+}
+
+.todolist-items{
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.item-left{
+    display: inline;
+    margin-right: 4%;
+    width: 5%;
+    height: 6.6%;
+    cursor: pointer;
+}
+
+.fa-square{
+    font-size: 36px;
+    font-weight: 500;
+    color:#ffffff80;
+}
+
+.item-center{
+    display: flex;
+    margin: 0px;
+    border: 1px solid #ffffff60;
+    border-radius: 6px;
+    width: 80%;
+    height: 40px;
+}
+
+.todolist-content{
+    margin: 10px 0px 5px 10px;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+}
+.todolist-date{
+    margin: 2% 2% 5% 2%;
+    cursor:default;
+    color: #ffffff80;
+}
+
+.edit-button{
+    margin-bottom: 5px;
+    width: 10%;
+    height : 100%;
+    cursor: pointer;
+}
+
+.fa-pen{
+    margin: 30% 25% 25% 25%;
+    font-size : 16px;
+    color:#ffffff70;
+}
+
+.fa-pen:hover{
+    color: #b22452;
+}
+
+.item-right{
+    margin: 0% 3% 0% 3%;
+    width: auto;
+    height: 6.6%;
+    cursor: pointer;
+}
+
+
+.fa-xmark{
+    margin: 25% 30% 25% 20%;
+    font-size: 28px;
+    color:#ffffff70;
+}
+
+.fa-xmark:hover{
+    color:#b22452;
+}
+
+
