@@ -73,14 +73,14 @@
     color:rgb(36, 36, 207);
 }
 
-.calnedar-tbody td {
+.calendar-tbody td {
     width: 17%;
     height: 17%;
     padding: 10px;
     vertical-align: middle;
     text-align: center;
-    font-size: 30px;
-    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
 
 }
 
@@ -98,6 +98,7 @@
     align-items: center;
     width: 50%;
     height: 50%;
+    cursor: pointer;
 }
 
 .calendar-tbody td > div > span:hover {
