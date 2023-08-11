@@ -1,3 +1,14 @@
+.todo-container{
+    justify-self: center;
+    align-self: center;
+    position: relative;
+    margin: 0% 0% 0% 2%;
+    /* border: 0.5px solid black; */
+    border-radius: 12px;
+    width: 50%;
+    height: 95%;
+}
+
 .todo-title {
     margin: 0% 0% 3% 0%;
     font-size: 3.5em;
@@ -10,8 +21,8 @@
     padding: 0px;
     border: 1px solid #ffffff80;
     border-radius: 5px;
-    margin-bottom: 40px;
-    width: 90%;
+    margin: 40px 0px 60px 0px;
+    width: 90.5%;
     height: 60px;
 }
 
@@ -22,7 +33,7 @@
 
 .text-input {
     border:0px;
-    padding: 17px 5px 15px 15px;
+    padding: 2% 1% 2% 2%;
     background-color: #00000000;
     width: 100%;
     height: 100%;
@@ -41,43 +52,21 @@
     justify-content: center;
   }
 
-.todolist-plus-icon{
-    display: absolute;
-    top: 10%;
-    bottom: 20%;
-    left: 10%;
-    right: 10%;
-    padding: 1% 1% 1% 1%;
-    background-color: transparent;
-    border: 0px;
-}
-
-.fa-plus {
-    font-size: 32px;
-    color:#ffffff70
-}
-
-.fa-plus:hover {
-    color:#b22452
-}
 .todolist-main-container{
-    border-radius: 5px;
     width: 100%;
-    height: 75%;
-    padding: 0% 0% 2% 0%;
+    height: 66.5%;
     list-style-type: none;
     overflow-y: scroll;
 }
 
 .todolist-main-container::-webkit-scrollbar {
-    margin-right: 10px;
-    width: 5px;
+    width: 4px;
     cursor: pointer;
 }
 
 .todolist-main-container::-webkit-scrollbar-thumb {
     background-color: #ffffff30;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -92,12 +81,27 @@
     width: 5%;
     height: 6.6%;
     cursor: pointer;
+    padding-top: 1%
 }
 
-.fa-square{
+.complet-chkboxs {
+    display: none;
+}
+
+/* 인접형제선택자중 label 찾음 */
+.complet-chkboxs + i {
     font-size: 36px;
     font-weight: 500;
     color:#ffffff80;
+}
+
+/* 체크된 .complet-chkboxs 중 인접형제 label에 after */
+.complet-chkboxs:checked + i::after {
+    
+}
+
+.fa-square{
+
 }
 
 .item-center{
@@ -106,26 +110,28 @@
     border: 1px solid #ffffff60;
     border-radius: 6px;
     width: 90%;
-    height: 40px;
+    height: 4%;
 }
 
 .todolist-content{
     margin: 10px 0px 5px 10px;
     width: 100%;
     height: 100%;
-    font-size: 20px;
+    font-size: 1.7em;
+    font-weight: 400;
 }
+
 .todolist-date{
-    margin: 2.5% 2% 0% 2%;
+    white-space: nowrap;
+    margin: 3.5% 2% 0% 2%;
     cursor:default;
     color: #ffffff80;
     font-size: 16px;
 }
 
 .edit-button{
-    margin-bottom: 5px;
-    width: 10%;
-    height : 100%;
+    padding-top: 1%;
+    width: 9%;
     cursor: pointer;
 }
 
@@ -140,7 +146,7 @@
 }
 
 .item-right{
-    margin: 0% 3% 0% 3%;
+    margin: 0.5% 3% 0% 2%;
     width: auto;
     height: 6.6%;
     cursor: pointer;
@@ -149,7 +155,7 @@
 
 .fa-xmark{
     margin: 25% 30% 25% 20%;
-    font-size: 28px;
+    font-size: 32px;
     color:#ffffff70;
 }
 
@@ -159,7 +165,8 @@
 
 .todo-current {
     display: flex;
-    padding: 0% 3% 0% 3%;
+    margin-top: 2%;
+    padding-right: 2%;
     width: 100%;
     height: 100%;
     font-size: 18px;
@@ -168,8 +175,8 @@
 
 .remaining-todo {
     white-space: nowrap;
-    
     justify-content: center;
+    text-align: left;
 }
 
 .todo-view{
@@ -178,18 +185,31 @@
     width: 100%;
 }
 
-.view-all{
-
+.view-all:hover{
+   color:#b22452;
 }
 
 .view-active{
     margin: 0% 5% 0% 5%;
 }
 
+.view-active:hover{
+    color:#b22452;
+ };
+
 .view-completed{
 
 }
 
+.view-completed:hover{
+    color:#b22452;
+ };
+
 .clear-completed{
+    white-space: nowrap;
     text-align: right;
 }
+
+.clear-completed:hover{
+    color:#b22452;
+ };

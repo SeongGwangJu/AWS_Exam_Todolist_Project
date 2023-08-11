@@ -17,294 +17,98 @@
     </style>
 </head>
 <body>
-<div class = "root">
-    <aside class="sidebar">
-        <button class="sidebar-toggle-button"> 
-            <i class="fa-solid fa-bars"></i>  
-        </button>
-    </aside>
-    <div class="container">
-        <main class="main-container">
-            <div class="calendar-container">
-                <div class="calendar-info-container">
-                    <i class="fa-regular fa-calendar"></i>
-                    <button id="beforebtn" class="calendar-before-button cal-btn">
-                        <i class="fa-solid fa-chevron-left fa-lg"></i></button>
-                    <span class="calendar-month">2023.08</span>
-                    <button id="nextbtn" class="calendar-next-button cal-btn">
-                        <i class="fa-solid fa-chevron-right fa-lg"></i></button>
-                </div>
-                <div class="calendar-wrapper">
-                    <table class="calendar-table">
-                        <thead class="calendar-thead">
-                            <tr>
-                                <th>일</th>
-                                <th>월</th>
-                                <th>화</th>
-                                <th>수</th>
-                                <th>목</th>
-                                <th>금</th>
-                                <th>토</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calendar-body" class="calendar-tbody">
-
-                        </tbody>
-                    </table>
-                </div>
-                    
-            </div>
-            <div class="todo-container">
-                <h1 class="todo-title">T O D O</h1>
-                <header>
-                    <div class="todolist-header-items">
-                        <input type="text" class="text-input w-f"
-                        placeholder="Add a new todo! ">
-                        <button class="todolist-plus-icon">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        
+    <div class = "root">
+        <aside class="sidebar">
+            <button class="sidebar-toggle-button"> 
+                <i class="fa-solid fa-bars"></i>  
+            </button>
+        </aside>
+        <div class="container">
+            <main class="main-container">
+                <div class="calendar-container">
+                    <div class="calendar-info-container">
+                        <i class="fa-regular fa-calendar"></i>
+                        <button id="beforebtn" class="calendar-before-button cal-btn">
+                            <i class="fa-solid fa-chevron-left fa-lg"></i></button>
+                        <span class="calendar-month"></span>
+                        <button id="nextbtn" class="calendar-next-button cal-btn">
+                            <i class="fa-solid fa-chevron-right fa-lg"></i></button>
                     </div>
-                </header>
-                <ul class="todolist-main-container">
-                    <!--                 list : 1 -->
-                    <li class="todolist-items">
-                        <div class="item-left">
-                          <i class="fa-regular fa-square"></i>
-                        </div>
-                        <div class="item-center">
-                            <pre class="todolist-content">make it perfect</pre>
-                            <p class="todolist-date">08.09</p>
-                            <div class="edit-button">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="remove-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-                        </div>
+                    <div class="calendar-wrapper">
+                        <table class="calendar-table">
+                            <thead class="calendar-thead">
+                                <tr>
+                                    <th>일</th>
+                                    <th>월</th>
+                                    <th>화</th>
+                                    <th>수</th>
+                                    <th>목</th>
+                                    <th>금</th>
+                                    <th>토</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body" class="calendar-tbody">
 
-                    </li>
-                    <!--  -->
-                                        <!--  -->
-                                        <li class="todolist-items">
-                                            <div class="item-left">
-                                              <i class="fa-regular fa-square"></i>
-                                            </div>
-                                            <div class="item-center">
-                                                <pre class="todolist-content">if you can</pre>
-                                                <p class="todolist-date">08.09</p>
-                                                <div class="edit-button">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </div>
-                                            </div>
-                                            <div class="item-right">
-                                                <div class="remove-button">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                    
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                                            <!--  -->
-                    <li class="todolist-items">
-                        <div class="item-left">
-                          <i class="fa-regular fa-square"></i>
-                        </div>
-                        <div class="item-center">
-                            <pre class="todolist-content">fighting!!</pre>
-                            <p class="todolist-date">08.09</p>
-                            <div class="edit-button">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="remove-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-
-                        </div>
-                    </li>
-                    <!--  -->
-                                        <!--  -->
-                                        <li class="todolist-items">
-                                            <div class="item-left">
-                                              <i class="fa-regular fa-square"></i>
-                                            </div>
-                                            <div class="item-center">
-                                                <pre class="todolist-content">저녁먹기</pre>
-                                                <p class="todolist-date">08.09</p>
-                                                <div class="edit-button">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </div>
-                                            </div>
-                                            <div class="item-right">
-                                                <div class="remove-button">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                    
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                                            <!--  -->
-                    <li class="todolist-items">
-                        <div class="item-left">
-                          <i class="fa-regular fa-square"></i>
-                        </div>
-                        <div class="item-center">
-                            <pre class="todolist-content">점심먹기</pre>
-                            <p class="todolist-date">08.09</p>
-                            <div class="edit-button">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="remove-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-
-                        </div>
-                    </li>
-                    <!--  -->
-                                        <!--  -->
-                                        <li class="todolist-items">
-                                            <div class="item-left">
-                                              <i class="fa-regular fa-square"></i>
-                                            </div>
-                                            <div class="item-center">
-                                                <pre class="todolist-content">아침먹기</pre>
-                                                <p class="todolist-date">08.09</p>
-                                                <div class="edit-button">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </div>
-                                            </div>
-                                            <div class="item-right">
-                                                <div class="remove-button">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                    
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                                            <!--  -->
-                    <li class="todolist-items">
-                        <div class="item-left">
-                          <i class="fa-regular fa-square"></i>
-                        </div>
-                        <div class="item-center">
-                            <pre class="todolist-content">일어나기</pre>
-                            <p class="todolist-date">08.09</p>
-                            <div class="edit-button">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="remove-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-
-                        </div>
-                    </li>
-                    <!--  -->
-                                        <!--  -->
-                                        <li class="todolist-items">
-                                            <div class="item-left">
-                                              <i class="fa-regular fa-square"></i>
-                                            </div>
-                                            <div class="item-center">
-                                                <pre class="todolist-content">잠자기</pre>
-                                                <p class="todolist-date">08.09</p>
-                                                <div class="edit-button">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </div>
-                                            </div>
-                                            <div class="item-right">
-                                                <div class="remove-button">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </div>
-                    
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                                            <!--  -->
-                    <li class="todolist-items">
-                        <div class="item-left">
-                          <i class="fa-regular fa-square"></i>
-                        </div>
-                        <div class="item-center">
-                            <pre class="todolist-content">장보기</pre>
-                            <p class="todolist-date">08.09</p>
-                            <div class="edit-button">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="remove-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-
-                        </div>
-                    </li>
-                    <!--  -->
-                    <li class="todolist-items">
-                        <div class="item-left">
-                          <i class="fa-regular fa-square"></i>
-                        </div>
-                        <div class="item-center">
-                            <pre class="todolist-content">엽떡</pre>
-                            <p class="todolist-date">08.09</p>
-                            <div class="edit-button">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="remove-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-
-                        </div>
-                    </li>
-                    <!--  -->
-                    <li class="todolist-items">
-                        <div class="item-left">
-                          <i class="fa-regular fa-square"></i>
-                        </div>
-                        <div class="item-center">
-                            <pre class="todolist-content">돈까스</pre>
-                            <p class="todolist-date">08.09</p>
-                            <div class="edit-button">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="remove-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-
-                        </div>
-                    </li>
-                    <!--  -->
-                </ul>
-                <footer>
-                    <div class="todo-current">
-                        <div class="remaining-todo">12 items lefts</div>
-                        <div class="todo-view">
-                            <span class="view-all">All</span>
-                            <span class="view-active">Active</span>
-                            <span class="view-completed">Completed</span>
-                        </div>
+                            </tbody>
+                        </table>
+                    </div>
                         
-                        <div class="clear-completed"> Clear</div>
-                </footer>
+                </div>
+                <div class="todo-container">
+                    <h1 class="todo-title">T O D O</h1>
+                    <header>
+                        <div class="todolist-header-items">
+                            <input type="text" class="text-input w-f"
+                            placeholder="Enter to add..." onkeyup="addTodoOnKeyUpHandle(event);" autofocus>
+                            
+                        </div>
+                    </header>
+                    <ul class="todolist-main-container">
+                        <!-- updateTodoList 에서 innerHTML -->
+                    </ul>
+                    <footer>
+                        <div class="todo-current">
+                            
+                            <div class="remaining-todo"></div> <!-- updateTodoList 에서 innerHTML -->
+                            <div class="todo-view">
+                                <span class="view-all">All</span>
+                                <span class="view-active">Active</span>
+                                <span class="view-completed">Completed</span>
+                            </div>
+                            <div class="clear-completed"> clear</div>
+                    </footer>
+                </div>
+            </main>
+            <!--  -->
+            <div class ="modal invisible">
+                <div class="modal-container">
+                    <header class="modal-header">
+                        <h1 class="modal-title"> 
+                            제목 
+                        </h1>
+                    </header>
+                    <main class="modal-main">
+                        <p class="modal-message">
+                            메세지내용
+                        </p>
+                        <input type="text" class="text-input w-f">
+                    </main>
+                    <footer class="modal-footer">
+                        <button class="btn">확인</button>
+                        <button class="btn">닫기</button>
+                    </footer>
+                </div>
             </div>
-        </main>
-    
+        </div>
     </div>
-
-
-
+    <script src="./JS/index.js"></script>
+    <script src="./JS/routes.js"></script>
+    <script src="./JS/todolist.js"></script>
     <script src="./JS/calendar.js"></script>
-</div>
+    <script src="./JS/modal.js"></script>
+    <script src="./JS/sidebar.js"></script>
+    <script src="./JS/utils.js"></script>
+    
+
 </body>
 </html>
