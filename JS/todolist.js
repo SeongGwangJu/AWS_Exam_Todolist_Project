@@ -6,15 +6,11 @@ const addTodoOnKeyUpHandle = (event) => {
 }
 
 //체크할때 이벤트
-//체크할때 이벤트
 const checkedOnChangeHandle = (target) => {
     TodoListService.getInstance().setCompletStatus(target.value, target.checked);
     TodoListService.getInstance().updateTodoList();
 
-    TodoListService.getInstance().updateTodoList();
-
 }
-// 삭제버튼 클릭하면 id(부모요소의 value)를 받아와 삭제
 // 삭제버튼 클릭하면 id(부모요소의 value)를 받아와 삭제
 const removeTodoOnClickHandle = (target) => {
     TodoListService.getInstance().removeTodo(target.parentElement.getAttribute("value"));
@@ -32,14 +28,13 @@ const modifyTodoOnKeyUpHandle = (event) => {
     }
 }
 
-selectAllOnClickHandle = (target) => {
+const selectAllOnClickHandle = () => {
     TodoListService.getInstance().selectAllTodo();
 }
-const selectActiveOnClickHandle = (target) => {
+const selectActiveOnClickHandle = () => {
     TodoListService.getInstance().selectActiveTodo();
 }
-
-selectCompletedOnClickHandle = (target) => {
+const selectCompletedOnClickHandle = () => {
     TodoListService.getInstance().selectCompletedTodo();
 }
 
@@ -67,6 +62,13 @@ const generateTodoObj = () => {
 
 
 class TodoListService { //메서드모음
+    
+    todoList = new Array();
+    activeTodoList = new Array();
+    completedTodoList = new Array();
+    completStatusFilter = "All";
+    todoIndex = 1;
+
     //싱글톤
     static #instance = null;
     static getInstance() {
@@ -75,20 +77,11 @@ class TodoListService { //메서드모음
         }
         return this.#instance;
     }
-
-    todoList = new Array();
-    activeTodoList = new Array();
-    completedTodoList = new Array();
-    completStatusFilter = "All";
-    trashList
-    todoIndex = 1;
     
-    //////// 생성자 + loadTodoList() ////////
     //Service.getInstance할때마다 나와서 todoList불러옴
     constructor() {
         this.loadTodoList();
     }
-
     loadTodoList() {
         /* 참고
         JSON.parse(Json문자열) : JSON'문자열' => 객체로 변환
@@ -104,12 +97,7 @@ class TodoListService { //메서드모음
         //배열의 마지막 값이 있으면 (true): id값을 todoIndex에 대입,
         //(false = 아무 값도 없다 = 아무 todo가 없다): todoIndex에 1넣음
         this.todoIndex = !!this.todoList[this.todoList.length - 1]?.id ? this.todoList[this.todoList.length - 1].id + 1 : 1;
-
     }
-    //////// 생성자 + loadTodoList() ////////
-
-
-    //////// add, update 시작 ////////
 
     //todoObj받아와서 todoList에 추가함
     addTodo(todoObj) {
@@ -163,11 +151,8 @@ class TodoListService { //메서드모음
                                 ${todo.completStatus ? "checked" : ""} value="${todo.id}" onchange="checkedOnChangeHandle(this);">
 								<label for="complet-chkbox${todo.id}" class="checkbox-label">
                                     <i class="fa-regular fa-square" id="complet-icon${todo.id}" > </i>
-                                    <i class="fa-regular fa-square" id="complet-icon${todo.id}" > </i>
                                 </label>
 							</div>
-							<div class="item-center" value="${todo.id}" id="item-center${todo.id}">
-								<pre class="todolist-content" "> ${todo.todoContent}</pre>
 							<div class="item-center" value="${todo.id}" id="item-center${todo.id}">
 								<pre class="todolist-content" "> ${todo.todoContent}</pre>
                                 <p class="todolist-date">${todo.createDate}</p>
