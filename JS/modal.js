@@ -8,16 +8,16 @@ const closeModal = () => {
     modal.innerHTML = "";
 }
 
-const modifySubmitButtonOnClick = (id) => {
-    const newTodoContent = document.querySelector(".modal-main .text-input").value;
+const modifyDateSubmitButtonOnClick = (id) => {
+    const newTodoDate= utils.document.querySelector(".modal-main .date-input").value;
     const todo = TodoListService.getInstance().getTodoById(id);
     //공백이거나 기존의값과 같을 때
-    if(todo.todoContent === newTodoContent || !newTodoContent) {
+    if(todo.createDate === newTodoDate || !newTodoDate) {
         return;
     }
     const todoObj = {
         ...todo,
-        todoContent: newTodoContent
+        CreateDate: newTodoDate
     }
     TodoListService.getInstance().setTodo(todoObj);
 }
@@ -25,7 +25,7 @@ const modifySubmitButtonOnClick = (id) => {
 const modifyModal = (todo) => {
     const modal = document.querySelector(".modal");
     modal.innerHTML = `
-        <div class="modal-container">
+            <div class="modal-container ">
             <header class="modal-header">
                 <h1 class="modal-title">
                     Todo 수정
@@ -33,12 +33,12 @@ const modifyModal = (todo) => {
             </header>
             <main class="modal-main">
                 <p class="modal-message">
-                    Todo를 수정해주세요.
+                    수정을 원하시는 날짜를 선택해주세요
                 </p>
-                <input type="text" class="text-input w-f" value="${todo.todoContent}">
+                <input type="date" class="date-input w-f" value="${todo.createDate}">
             </main>
             <footer class="modal-footer">
-                <button class="btn" onclick="modifySubmitButtonOnClick(${todo.id}); closeModal();">확인</button>
+                <button class="btn" onclick="modifyDateSubmitButtonOnClick(todo.id); closeModal();">확인</button>
                 <button class="btn" onclick="closeModal();">닫기</button>
             </footer>
         </div>

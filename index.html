@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/CSS/common.css">
     <link rel="stylesheet" href="/CSS/calendar.css">
     <link rel="stylesheet" href="/CSS/list-area.css">
+    <link rel="stylesheet" href="/CSS/modal.css">
     <style>
         body {
             background-image: url('/image/background.png');
@@ -23,8 +24,8 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
         </aside>
-        <div class="container">
-            <main class="main-container">
+        <div class="container ">
+            <main class="main-container ">
                 <div class="calendar-container">
                     <div class="calendar-info-container">
                         <i class="fa-regular fa-calendar"></i>
@@ -58,7 +59,6 @@
                         <div class="todolist-header-items">
                             <input type="text" class="text-input w-f"
                             placeholder="Enter to add..." onkeyup="addTodoOnKeyUpHandle(event);" autofocus>
-                            
                         </div>
                     </header>
                     <ul class="todolist-main-container">
@@ -74,12 +74,11 @@
                             </div>
                             <div class="clear-completed">clear</div>
                     </footer>
-                    <div class="modal">
-                        
-                        <!-- modal -->
-                    </div>
-                </div>
             </main>
+            <div class ="modal invisible">
+            </div>
+        </div>
+        
             </div>
         </div>
     </div>
@@ -87,9 +86,9 @@
     <script src="./JS/routes.js"></script>
     <script src="./JS/todolist.js"></script>
     <script src="./JS/calendar.js"></script>
-    <script src="./JS/modal.js"></script>
     <script src="./JS/sidebar.js"></script>
     <script src="./JS/utils.js"></script>
+    <script src="./JS/modal.js"></script>
     
 
 </body>

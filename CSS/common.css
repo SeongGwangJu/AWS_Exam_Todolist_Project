@@ -51,4 +51,8 @@
     height: 100%;
 }
 
+.invisible {
+    display: none !important;
+}
+
 

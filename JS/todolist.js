@@ -9,7 +9,6 @@ const addTodoOnKeyUpHandle = (event) => {
 const checkedOnChangeHandle = (target) => {
     TodoListService.getInstance().setCompletStatus(target.value, target.checked);
     TodoListService.getInstance().updateTodoList();
-
 }
 // 삭제버튼 클릭하면 id(부모요소의 value)를 받아와 삭제
 const removeTodoOnClickHandle = (target) => {
@@ -38,6 +37,13 @@ const selectCompletedOnClickHandle = () => {
     TodoListService.getInstance().selectCompletedTodo();
 }
 
+const modifyDateOnClickHandle = (target) => {
+    openModal();
+    console.log("click")
+    //const modal = document.querySelector(".modal");
+    modifyModal(TodoListService.getInstance().getTodoById(target.value));
+    console.log("modifyTodoOnClickHandle")
+}
 //////////// 이벤트 끝 ////////////
 
 
@@ -57,8 +63,8 @@ const generateTodoObj = () => {
         completStatus: false
     };
     TodoListService.getInstance().addTodo(todoObj);
+    document.querySelector('.text-input').value = '';
 }
-
 
 
 class TodoListService { //메서드모음
@@ -77,7 +83,7 @@ class TodoListService { //메서드모음
         }
         return this.#instance;
     }
-    
+
     //Service.getInstance할때마다 나와서 todoList불러옴
     constructor() {
         this.loadTodoList();
@@ -90,7 +96,6 @@ class TodoListService { //메서드모음
         //원리 확실히 알 것!
         //이중부정: 가져올 데이터가 있으면? (true)가지고 오고 / (false) 새 배열로 만듬
         this.todoList = !!localStorage.getItem("todoList") ? JSON.parse(localStorage.getItem("todoList")) : new Array();
-
 
         //this.todoList[this.todoList.length - 1]?.id : 배열의 마지막 id값.
         //!!을 붙임으로써, 해당 요소가 존재하지 않을 경우에도 에러를 발생시키지 않고 undefined를 반환
@@ -140,6 +145,7 @@ class TodoListService { //메서드모음
             <span> tasks left </span>`
     }
 
+    //view case를 매개변수로 각각의 list에 맞게 뿌려줌
     updateInnerHTML(List) {
         const todoListMainContainer = document.querySelector(".todolist-main-container");
         
@@ -155,7 +161,7 @@ class TodoListService { //메서드모음
 							</div>
 							<div class="item-center" value="${todo.id}" id="item-center${todo.id}">
 								<pre class="todolist-content" "> ${todo.todoContent}</pre>
-                                <p class="todolist-date">${todo.createDate}</p>
+                                <p class="todolist-date" onclick="modifyDateOnClickHandle">${todo.createDate}</p>
                                 <div class="edit-button" value="${todo.id}">
                                 <i class="fa-solid fa-pen" onclick="modifyTodoOnClickHandle(this);"> </i> </div>
 							</div>
@@ -170,8 +176,6 @@ class TodoListService { //메서드모음
         }).join("");
 
         List.forEach(todo => {
-            
-            console.log(document.getElementById(`complet-chkbox${todo.id}`));
             const checkBox = document.getElementById(`complet-chkbox${todo.id}`);
             const checkIcon = document.getElementById(`complet-icon${todo.id}`);
             
@@ -245,7 +249,6 @@ class TodoListService { //메서드모음
 
     //기존 List의 값을 변경 후 저장/업뎃
     setTodo(todoObj) {
-        console.log(todoObj);
         const newTodoContent = document.querySelector(`#item-center${todoObj.id} .todolist-content`).value;
         const todo = this.getTodoById(todoObj.id);
         //공백이거나 기존의값과 같을 때
@@ -274,22 +277,19 @@ class TodoListService { //메서드모음
 
     selectAllTodo() {
         this.completStatusFilter = "All";
-        console.log(this.todoList)
         this.updateTodoList();
     }
-
     selectActiveTodo() {
-        this.activeTodoList = this.todoList.filter(todo => !todo.completStatus)
-        console.log(this.activeTodoList);
         this.completStatusFilter = "Active";
         this.updateTodoList();
     }
-
     selectCompletedTodo() {
-        this.completedTodoList = this.todoList.filter(todo => !!todo.completStatus)
-        console.log(this.completedTodoList);
         this.completStatusFilter = "Completed";
         this.updateTodoList();
     }
+
+
+
+    
 
 }

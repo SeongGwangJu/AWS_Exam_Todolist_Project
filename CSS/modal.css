@@ -1,0 +1,74 @@
+.modal {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000060;
+  
+
+}
+.modal-container {
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+.modal-header {
+  border-bottom: 1px solid #dbdbdb;
+  padding: 15px 20px;
+  width: 300px;
+  font-size: 3em;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color:black
+}
+
+.modal-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 20px;
+  width:400px;
+  height:600px;
+}
+
+.modal-message {
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  /* 자동줄바꿈 */
+  word-wrap: break-word;
+  color:black
+}
+.modal-main > *:not(modal-main :nth-last-child(1)) {
+  margin-bottom: 10px;
+}
+
+.date-input {
+  color: black;
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 20px;
+  width: 300px;
+  
+}
+
+.modal-footer .btn {
+  color:black;
+}
+/* 뒤에서 첫번째가 아닌 녀석들한테만 */
+.modal-footer .btn:not(.modal-footer :nth-last-child(1)) {
+  margin-right: 5px;
+}
+
