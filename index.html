@@ -19,8 +19,8 @@
 <body>
     <div class = "root">
         <aside class="sidebar">
-            <button class="sidebar-toggle-button"> 
-                <i class="fa-solid fa-bars"></i>  
+            <button class="sidebar-toggle-button">
+                <i class="fa-solid fa-bars"></i>
             </button>
         </aside>
         <div class="container">
@@ -47,9 +47,7 @@
                                     <th>토</th>
                                 </tr>
                             </thead>
-                            <tbody id="calendar-body" class="calendar-tbody">
-
-                            </tbody>
+                            <tbody id="calendar-body" class="calendar-tbody"></tbody>
                         </table>
                     </div>
                         
@@ -68,8 +66,7 @@
                     </ul>
                     <footer>
                         <div class="todo-current">
-                            
-                            <div class="remaining-todo"></div> <!-- updateTodoList 에서 innerHTML -->
+                            <div class="remaining-todo"></div>
                             <div class="todo-view">
                                 <span class="view-all">All</span>
                                 <span class="view-active">Active</span>
@@ -79,25 +76,6 @@
                     </footer>
                 </div>
             </main>
-            <!--  -->
-            <div class ="modal invisible">
-                <div class="modal-container">
-                    <header class="modal-header">
-                        <h1 class="modal-title"> 
-                            제목 
-                        </h1>
-                    </header>
-                    <main class="modal-main">
-                        <p class="modal-message">
-                            메세지내용
-                        </p>
-                        <input type="text" class="text-input w-f">
-                    </main>
-                    <footer class="modal-footer">
-                        <button class="btn">확인</button>
-                        <button class="btn">닫기</button>
-                    </footer>
-                </div>
             </div>
         </div>
     </div>
@@ -112,3 +90,9 @@
 
 </body>
 </html>
+
+<div class="item-left">
+    <input type="checkbox" id="complet-chkbox${todo.id}" class="complet-chkboxs"
+    value="${todo.id}">
+    <i class="fa-regular fa-square" onclick="checkedOnChangeHandle(this);"> </i>
+</div>

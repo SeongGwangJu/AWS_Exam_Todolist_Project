@@ -38,6 +38,8 @@
     width: 100%;
     height: 100%;
     font-size: 28px;
+    justify-content: center;
+    align-items: center;
 }
 
 .text-input:focus::placeholder {
@@ -50,7 +52,8 @@
     font-size: 28px;
     text-align: left;
     justify-content: center;
-  }
+    align-items: center;
+}
 
 .todolist-main-container{
     width: 100%;
@@ -80,7 +83,6 @@
     margin-right: 4%;
     width: 5%;
     height: 6.6%;
-    cursor: pointer;
     padding-top: 1%
 }
 
@@ -89,14 +91,15 @@
 }
 
 /* 인접형제선택자중 label 찾음 */
-.complet-chkboxs + i {
+.checkbox-label{
     font-size: 36px;
     font-weight: 500;
     color:#ffffff80;
+    cursor: pointer;
 }
 
 /* 체크된 .complet-chkboxs 중 인접형제 label에 after */
-.complet-chkboxs:checked + i::after {
+.complet-chkboxs:checked + label::after {
     
 }
 
@@ -111,10 +114,12 @@
     border-radius: 6px;
     width: 90%;
     height: 4%;
+    justify-content: center;
+    align-items: center;
 }
 
 .todolist-content{
-    margin: 10px 0px 5px 10px;
+    margin-left: 10px;
     width: 100%;
     height: 100%;
     font-size: 1.7em;
@@ -123,14 +128,13 @@
 
 .todolist-date{
     white-space: nowrap;
-    margin: 3.5% 2% 0% 2%;
+    margin:1.5% 2% 0% 2%;
     cursor:default;
     color: #ffffff80;
     font-size: 16px;
 }
 
 .edit-button{
-    padding-top: 1%;
     width: 9%;
     cursor: pointer;
 }
@@ -178,6 +182,11 @@
     justify-content: center;
     text-align: left;
 }
+.remaining-todo-number {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
 
 .todo-view{
     text-align: center;
@@ -186,7 +195,7 @@
 }
 
 .view-all:hover{
-   color:#b22452;
+    color:#b22452;
 }
 
 .view-active{
