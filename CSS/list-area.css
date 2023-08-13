@@ -99,12 +99,17 @@
 }
 
 /* 체크된 .complet-chkboxs 중 인접형제 label에 after */
-.complet-chkboxs:checked + label::after {
-    
+
+.complet-chkboxs:checked + label::before {
+    display: none;
 }
 
-.fa-square{
+checkbox-label::before {
+    display: none;
+}
 
+.fa-regular::before{
+    
 }
 
 .item-center{
@@ -116,14 +121,19 @@
     height: 4%;
     justify-content: center;
     align-items: center;
+
 }
 
 .todolist-content{
-    margin-left: 10px;
     width: 100%;
     height: 100%;
     font-size: 1.7em;
     font-weight: 400;
+}
+
+input[type="text"].todolist-content {
+    background-color: transparent;
+    width: 100%;
 }
 
 .todolist-date{
@@ -134,15 +144,20 @@
     font-size: 16px;
 }
 
+.todolist-date:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .edit-button{
     width: 9%;
-    cursor: pointer;
 }
 
 .fa-pen{
     margin: 30% 25% 25% 25%;
     font-size : 16px;
     color:#ffffff70;
+    cursor: pointer;
 }
 
 .fa-pen:hover{
@@ -194,20 +209,24 @@
     width: 100%;
 }
 
+.view-all{
+    cursor: pointer;
+}
 .view-all:hover{
     color:#b22452;
 }
 
 .view-active{
     margin: 0% 5% 0% 5%;
+    cursor: pointer;
 }
 
 .view-active:hover{
     color:#b22452;
- };
+};
 
 .view-completed{
-
+    cursor: pointer;
 }
 
 .view-completed:hover{

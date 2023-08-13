@@ -68,12 +68,16 @@
                         <div class="todo-current">
                             <div class="remaining-todo"></div>
                             <div class="todo-view">
-                                <span class="view-all">All</span>
-                                <span class="view-active">Active</span>
-                                <span class="view-completed">Completed</span>
+                                <span class="view-all "  onclick="selectAllOnClickHandle(this)">All</span>
+                                <span class="view-active" onclick="selectActiveOnClickHandle(this)">Active</span>
+                                <span class="view-completed" onclick="selectCompletedOnClickHandle(this)">Completed</span>
                             </div>
-                            <div class="clear-completed"> clear</div>
+                            <div class="clear-completed">clear</div>
                     </footer>
+                    <div class="modal">
+                        
+                        <!-- modal -->
+                    </div>
                 </div>
             </main>
             </div>
@@ -90,9 +94,3 @@
 
 </body>
 </html>
-
-<div class="item-left">
-    <input type="checkbox" id="complet-chkbox${todo.id}" class="complet-chkboxs"
-    value="${todo.id}">
-    <i class="fa-regular fa-square" onclick="checkedOnChangeHandle(this);"> </i>
-</div>

@@ -5,32 +5,54 @@ const addTodoOnKeyUpHandle = (event) => {
     }
 }
 
-//완료버튼 누를 때 이벤트
+//체크할때 이벤트
 const checkedOnChangeHandle = (target) => {
-    const icon = target.parentElement.querySelector("i.fa-regular.fa-square");
-    console.log("target : " + target);
     TodoListService.getInstance().setCompletStatus(target.value, target.checked);
-    
-    if (icon) {
-        if (target.checked) {
-            icon.classList.remove("fa-square");
-            icon.classList.add("fa-square-check");
-        } else {
-            icon.classList.remove("fa-square-check");
-            icon.classList.add("fa-square");
-        }
+    TodoListService.getInstance().updateTodoList();
+
+}
+// 삭제버튼 클릭하면 id(부모요소의 value)를 받아와 삭제
+const removeTodoOnClickHandle = (target) => {
+    TodoListService.getInstance().removeTodo(target.parentElement.getAttribute("value"));
+}
+
+//클릭하면 type=text로 변경
+const modifyTodoOnClickHandle = (target) => {
+    TodoListService.getInstance().modifyTodoContents(target.parentElement.getAttribute("value"));
+}
+
+const modifyTodoOnKeyUpHandle = (event) => {
+    if (event.keyCode === 13) {
+        const todoId = event.target.parentElement.getAttribute("value");
+        TodoListService.getInstance().setTodo(TodoListService.getInstance().getTodoById(todoId));
     }
 }
 
-const removeTodoOnClickHandle = (target) => {
-    // 아이콘을 클릭하면 id(부모요소의 value)를 받아와 삭제
-    console.log("value : " + target.parentElement.getAttribute("value"));
-    TodoListService.getInstance().removeTodo(target.parentElement.getAttribute("value"));
+selectAllOnClickHandle = (target) => {
+    console.log("selectAllOnClickHandle : " + target)
+    TodoListService.getInstance().selectAllTodo();
 }
+const selectActiveOnClickHandle = (target) => {
+    console.log("selectActiveOnClickHandle : " + target)
+    TodoListService.getInstance().selectActiveTodo();
+}
+
+selectCompletedOnClickHandle = (target) => {
+    console.log("selectCompletedOnClickHandle : " + target)
+    TodoListService.getInstance().selectCompletedTodo();
+}
+
+//////////// 이벤트 끝 ////////////
+
 
 //todo 객체 생성, addTodo()로 패스(addTodo: ArrayList에 넣음)
 const generateTodoObj = () => {
     const todoContent = document.querySelector(".todolist-header-items .text-input").value;
+
+    if(!todoContent) {
+        alert("값을 입력해주세요.");
+        return;
+    }
 
     const todoObj = {
         id: 0,
@@ -42,8 +64,8 @@ const generateTodoObj = () => {
 }
 
 
-/////   TodoList 관련된 메서드 모음   /////
-class TodoListService {
+
+class TodoListService { //메서드모음
     //싱글톤
     static #instance = null;
     static getInstance() {
@@ -54,7 +76,10 @@ class TodoListService {
     }
 
     todoList = new Array();
-    trashList = new Array();
+    activeTodoList = new Array();
+    completedTodoList = new Array();
+    completStatusFilter = "All";
+    trashList
     todoIndex = 1;
     
     //////// 생성자 + loadTodoList() ////////
@@ -71,7 +96,7 @@ class TodoListService {
         //원리 확실히 알 것!
         //이중부정: 가져올 데이터가 있으면? (true)가지고 오고 / (false) 새 배열로 만듬
         this.todoList = !!localStorage.getItem("todoList") ? JSON.parse(localStorage.getItem("todoList")) : new Array();
-       
+
         //this.todoList[this.todoList.length - 1]?.id : 배열의 마지막 id값.
         //!!을 붙임으로써, 해당 요소가 존재하지 않을 경우에도 에러를 발생시키지 않고 undefined를 반환
         //배열의 마지막 값이 있으면 (true): id값을 todoIndex에 대입,
@@ -91,8 +116,6 @@ class TodoListService {
             ...todoObj, //깊은복사. todoObj의 함수 선언문 자체를 갖고온거랑 같음
             id: this.todoIndex
         }
-
-        console.log(todo)
         this.todoList.push(todo);
         this.saveLocalStorage();
         this.updateTodoList();
@@ -107,21 +130,41 @@ class TodoListService {
 
     //todoList의 List를 innerHTML로 화면에 뿌림.
     updateTodoList() {
-        console.log("updateTodoList 실행");
+        switch(this.completStatusFilter) {
+            case "All" :
+                this.updateInnerHTML(this.todoList);
+                break;
+            case "Active" :
+                this.updateInnerHTML(this.todoList.filter(
+                    todo => !todo.completStatus));
+                break;
+            case "Completed" :
+                this.updateInnerHTML(this.todoList.filter(
+                    todo => !!todo.completStatus));
+                break;
+            }
+
+        // 할 일이 몇개 남았는지 표시
+        document.querySelector(".remaining-todo").innerHTML = `
+            <span class = remaining-todo-number>${this.todoList.filter(todo => !todo.completStatus).length}</span>
+            <span> tasks left </span>`
+    }
+
+    updateInnerHTML(List) {
         const todoListMainContainer = document.querySelector(".todolist-main-container");
         
-        todoListMainContainer.innerHTML = this.todoList.map(todo => {
+        todoListMainContainer.innerHTML =List.map(todo => {
             return `
                 <li class="todolist-items">
 							<div class="item-left">
 								<input type="checkbox" id="complet-chkbox${todo.id}" class="complet-chkboxs"
                                 ${todo.completStatus ? "checked" : ""} value="${todo.id}" onchange="checkedOnChangeHandle(this);">
 								<label for="complet-chkbox${todo.id}" class="checkbox-label">
-                                    <i class="fa-regular fa-square" > </i>
+                                    <i class="fa-regular fa-square" id="complet-icon${todo.id}" > </i>
                                 </label>
 							</div>
-							<div class="item-center">
-								<pre class="todolist-content">${todo.todoContent}</pre>
+							<div class="item-center" value="${todo.id}" id="item-center${todo.id}">
+								<pre class="todolist-content" "> ${todo.todoContent}</pre>
                                 <p class="todolist-date">${todo.createDate}</p>
                                 <div class="edit-button" value="${todo.id}">
                                 <i class="fa-solid fa-pen" onclick="modifyTodoOnClickHandle(this);"> </i> </div>
@@ -136,26 +179,48 @@ class TodoListService {
                 `;
         }).join("");
 
-        // 할 일이 몇개 남았는지 표시 ///
-        document.querySelector(".remaining-todo").innerHTML = `
-        <span class = remaining-todo-number>${this.todoList.filter(todo => !todo.completStatus).length}</span>
-        <span> items lefts </span>`
-
+        List.forEach(todo => {
+            
+            console.log(document.getElementById(`complet-chkbox${todo.id}`));
+            const checkBox = document.getElementById(`complet-chkbox${todo.id}`);
+            const checkIcon = document.getElementById(`complet-icon${todo.id}`);
+            
+            if (checkBox.checked) {
+                checkIcon.classList.remove("fa-square");
+                checkIcon.classList.add("fa-square-check");
+            } else {
+                checkIcon.classList.remove("fa-square-check");
+                checkIcon.classList.add("fa-square");
+            }
+        });
     }
     //////// add, update 끝 ////////
 
-    //List 체크박스 * 미완
+    //List 체크박스의 상태변경 + list 변경
     setCompletStatus(id, status) {
-        console.log("setCompletStatus ▼");
         this.todoList.forEach((todo, index) => {
             if(todo.id === parseInt(id)) { //id = 문자열이라, int로 변환 후 비교
                 this.todoList[index].completStatus = status;
-                console.log(this.todoList[index]);
             }
         });
+
+
         this.saveLocalStorage();
     }
 
+    //pre->input:text로 바꿈
+    modifyTodoContents(id) {
+        const todoObj = this.getTodoById(id);
+        const itemCenter = document.querySelector(`#item-center${todoObj.id}`);
+
+        itemCenter.innerHTML = `
+            <input type="text" class="todolist-content" value="${todoObj.todoContent}" onkeyup="modifyTodoOnKeyUpHandle(event);" autofocus>
+            <p class="todolist-date">${todoObj.createDate}</p>
+            <div class="edit-button" value="${todoObj.id}">
+            <i class="fa-solid fa-pen" onclick="modifyTodoOnClickHandle(this);"> </i> </div>
+`
+    }
+    
     //삭제하면 * 휴지통 이동 needed.
     removeTodo(id) {
         this.todoList = this.todoList.filter(todo => {
@@ -166,18 +231,32 @@ class TodoListService {
         this.updateTodoList(); //불러오기
     }
 
-    //해당 아이디를 가진 todo객체 리턴
+    //id로 해당 아이디를 가진 todo객체를 리턴
     getTodoById(id) {
         //필터 : 괄호 안의 조건에 맞는 녀석만 배열에 넣어줌, 조건에 맞는 놈이 하나니까 0번 인덱스를 참조.)
-
-        console.log("gettodobyid" + this.todoList.filter(todo => todo.id === parseInt(id))[0]);
-        
-        return this.todoList.filter(todo => todo.id === parseInt(id))[0];
+            return this.todoList.filter(todo => todo.id === parseInt(id))[0];
         
     }
 
     //기존 List의 값을 변경 후 저장/업뎃
     setTodo(todoObj) {
+        console.log(todoObj);
+        const newTodoContent = document.querySelector(`#item-center${todoObj.id} .todolist-content`).value;
+        const todo = this.getTodoById(todoObj.id);
+        //공백이거나 기존의값과 같을 때
+        if(todo.todoContent === newTodoContent) {
+            alert("기존 값과 같습니다.");
+            modifyTodoContents(todoObj.id); //다시 focus + 기존값 set
+        }
+        if(!newTodoContent) {
+            alert("값을 입력해주세요.");
+            
+            return;
+        }
+        todoObj = {
+            ...todo,
+            todoContent: newTodoContent
+        }
         for(let i = 0; i < this.todoList.length; i++) {
             if(this.todoList[i].id === todoObj.id) {
                 this.todoList[i] = todoObj;
@@ -187,4 +266,25 @@ class TodoListService {
         this.saveLocalStorage();
         this.updateTodoList();
     }
+
+    selectAllTodo() {
+        this.completStatusFilter = "All";
+        console.log(this.todoList)
+        this.updateTodoList();
+    }
+
+    selectActiveTodo() {
+        this.activeTodoList = this.todoList.filter(todo => !todo.completStatus)
+        console.log(this.activeTodoList);
+        this.completStatusFilter = "Active";
+        this.updateTodoList();
+    }
+
+    selectCompletedTodo() {
+        this.completedTodoList = this.todoList.filter(todo => !!todo.completStatus)
+        console.log(this.completedTodoList);
+        this.completStatusFilter = "Completed";
+        this.updateTodoList();
+    }
+
 }
