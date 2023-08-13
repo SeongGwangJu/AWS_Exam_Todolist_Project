@@ -6,11 +6,15 @@ const addTodoOnKeyUpHandle = (event) => {
 }
 
 //체크할때 이벤트
+//체크할때 이벤트
 const checkedOnChangeHandle = (target) => {
     TodoListService.getInstance().setCompletStatus(target.value, target.checked);
     TodoListService.getInstance().updateTodoList();
 
+    TodoListService.getInstance().updateTodoList();
+
 }
+// 삭제버튼 클릭하면 id(부모요소의 value)를 받아와 삭제
 // 삭제버튼 클릭하면 id(부모요소의 value)를 받아와 삭제
 const removeTodoOnClickHandle = (target) => {
     TodoListService.getInstance().removeTodo(target.parentElement.getAttribute("value"));
@@ -29,16 +33,13 @@ const modifyTodoOnKeyUpHandle = (event) => {
 }
 
 selectAllOnClickHandle = (target) => {
-    console.log("selectAllOnClickHandle : " + target)
     TodoListService.getInstance().selectAllTodo();
 }
 const selectActiveOnClickHandle = (target) => {
-    console.log("selectActiveOnClickHandle : " + target)
     TodoListService.getInstance().selectActiveTodo();
 }
 
 selectCompletedOnClickHandle = (target) => {
-    console.log("selectCompletedOnClickHandle : " + target)
     TodoListService.getInstance().selectCompletedTodo();
 }
 
@@ -96,6 +97,7 @@ class TodoListService { //메서드모음
         //원리 확실히 알 것!
         //이중부정: 가져올 데이터가 있으면? (true)가지고 오고 / (false) 새 배열로 만듬
         this.todoList = !!localStorage.getItem("todoList") ? JSON.parse(localStorage.getItem("todoList")) : new Array();
+
 
         //this.todoList[this.todoList.length - 1]?.id : 배열의 마지막 id값.
         //!!을 붙임으로써, 해당 요소가 존재하지 않을 경우에도 에러를 발생시키지 않고 undefined를 반환
@@ -161,8 +163,11 @@ class TodoListService { //메서드모음
                                 ${todo.completStatus ? "checked" : ""} value="${todo.id}" onchange="checkedOnChangeHandle(this);">
 								<label for="complet-chkbox${todo.id}" class="checkbox-label">
                                     <i class="fa-regular fa-square" id="complet-icon${todo.id}" > </i>
+                                    <i class="fa-regular fa-square" id="complet-icon${todo.id}" > </i>
                                 </label>
 							</div>
+							<div class="item-center" value="${todo.id}" id="item-center${todo.id}">
+								<pre class="todolist-content" "> ${todo.todoContent}</pre>
 							<div class="item-center" value="${todo.id}" id="item-center${todo.id}">
 								<pre class="todolist-content" "> ${todo.todoContent}</pre>
                                 <p class="todolist-date">${todo.createDate}</p>
@@ -221,6 +226,20 @@ class TodoListService { //메서드모음
 `
     }
     
+
+    //pre->input:text로 바꿈
+    modifyTodoContents(id) {
+        const todoObj = this.getTodoById(id);
+        const itemCenter = document.querySelector(`#item-center${todoObj.id}`);
+
+        itemCenter.innerHTML = `
+            <input type="text" class="todolist-content" value="${todoObj.todoContent}" onkeyup="modifyTodoOnKeyUpHandle(event);" autofocus>
+            <p class="todolist-date">${todoObj.createDate}</p>
+            <div class="edit-button" value="${todoObj.id}">
+            <i class="fa-solid fa-pen" onclick="modifyTodoOnClickHandle(this);"> </i> </div>
+`
+    }
+    
     //삭제하면 * 휴지통 이동 needed.
     removeTodo(id) {
         this.todoList = this.todoList.filter(todo => {
@@ -231,6 +250,7 @@ class TodoListService { //메서드모음
         this.updateTodoList(); //불러오기
     }
 
+    //id로 해당 아이디를 가진 todo객체를 리턴
     //id로 해당 아이디를 가진 todo객체를 리턴
     getTodoById(id) {
         //필터 : 괄호 안의 조건에 맞는 녀석만 배열에 넣어줌, 조건에 맞는 놈이 하나니까 0번 인덱스를 참조.)
