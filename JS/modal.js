@@ -9,17 +9,20 @@ const closeModal = () => {
 }
 
 const modifyDateSubmitButtonOnClick = (id) => {
-    const newTodoDate= utils.document.querySelector(".modal-main .date-input").value;
+    const newTodoDate = document.querySelector(".modal-main .date-input").value;
+    
     const todo = TodoListService.getInstance().getTodoById(id);
     //공백이거나 기존의값과 같을 때
+    console.log("todo.createDate : " + todo.createDate)
+    console.log("newTodoDate : " + newTodoDate)
     if(todo.createDate === newTodoDate || !newTodoDate) {
-        return;
+        alert("바보");
     }
     const todoObj = {
         ...todo,
-        CreateDate: newTodoDate
+        createDate: newTodoDate
     }
-    TodoListService.getInstance().setTodo(todoObj);
+    TodoListService.getInstance().setDate(todoObj);
 }
 
 const modifyModal = (todo) => {
@@ -38,7 +41,7 @@ const modifyModal = (todo) => {
                 <input type="date" class="date-input w-f" value="${todo.createDate}">
             </main>
             <footer class="modal-footer">
-                <button class="btn" onclick="modifyDateSubmitButtonOnClick(todo.id); closeModal();">확인</button>
+                <button class="btn" onclick="modifyDateSubmitButtonOnClick('${todo.id}'); closeModal();">확인</button>
                 <button class="btn" onclick="closeModal();">닫기</button>
             </footer>
         </div>

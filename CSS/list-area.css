@@ -136,6 +136,14 @@ input[type="text"].todolist-content {
     width: 100%;
 }
 
+.todolist-content:focus{
+    border: 1px solid #ffffff;
+}
+
+..todolist-content:active{
+    border: 1px solid #ffffff;
+}
+
 .todolist-date{
     white-space: nowrap;
     margin:1.5% 2% 0% 2%;
@@ -231,7 +239,7 @@ input[type="text"].todolist-content {
 
 .view-completed:hover{
     color:#b22452;
- };
+};
 
 .clear-completed{
     white-space: nowrap;
@@ -240,4 +248,12 @@ input[type="text"].todolist-content {
 
 .clear-completed:hover{
     color:#b22452;
- };
+};
+
+.todo-view.selected{
+    color:#b22452;
+}
+
+.selected{
+    color:#b22452;
+}

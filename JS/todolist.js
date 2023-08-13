@@ -23,7 +23,7 @@ const modifyTodoOnClickHandle = (target) => {
 const modifyTodoOnKeyUpHandle = (event) => {
     if (event.keyCode === 13) {
         const todoId = event.target.parentElement.getAttribute("value");
-        TodoListService.getInstance().setTodo(TodoListService.getInstance().getTodoById(todoId));
+        TodoListService.getInstance().setContent(TodoListService.getInstance().getTodoById(todoId));
     }
 }
 
@@ -38,11 +38,11 @@ const selectCompletedOnClickHandle = () => {
 }
 
 const modifyDateOnClickHandle = (target) => {
-    openModal();
     console.log("click")
-    //const modal = document.querySelector(".modal");
-    modifyModal(TodoListService.getInstance().getTodoById(target.value));
-    console.log("modifyTodoOnClickHandle")
+    openModal();
+    const todoId = target.parentElement.getAttribute("value")
+    modifyModal(TodoListService.getInstance().getTodoById(todoId));
+    console.log(TodoListService.getInstance().getTodoById(todoId));
 }
 //////////// 이벤트 끝 ////////////
 
@@ -51,10 +51,10 @@ const modifyDateOnClickHandle = (target) => {
 const generateTodoObj = () => {
     const todoContent = document.querySelector(".todolist-header-items .text-input").value;
 
-    if(!todoContent) {
-        alert("값을 입력해주세요.");
-        return;
-    }
+    // if(!todoContent) {
+    //     alert("값을 입력해주세요.");
+    //     return;
+    // }
 
     const todoObj = {
         id: 0,
@@ -128,14 +128,23 @@ class TodoListService { //메서드모음
         switch(this.completStatusFilter) {
             case "All" :
                 this.updateInnerHTML(this.todoList);
+                document.querySelector(".view-all").classList.add("selected");
+                document.querySelector(".view-active").classList.remove("selected");
+                document.querySelector(".view-completed").classList.remove("selected");
                 break;
             case "Active" :
                 this.updateInnerHTML(this.todoList.filter(
                     todo => !todo.completStatus));
+                document.querySelector(".view-active").classList.add("selected");
+                document.querySelector(".view-all").classList.remove("selected");
+                document.querySelector(".view-completed").classList.remove("selected");
                 break;
             case "Completed" :
                 this.updateInnerHTML(this.todoList.filter(
                     todo => !!todo.completStatus));
+                document.querySelector(".view-completed").classList.add("selected");
+                document.querySelector(".view-all").classList.remove("selected");
+                document.querySelector(".view-active").classList.remove("selected");
                 break;
             }
 
@@ -161,7 +170,7 @@ class TodoListService { //메서드모음
 							</div>
 							<div class="item-center" value="${todo.id}" id="item-center${todo.id}">
 								<pre class="todolist-content" "> ${todo.todoContent}</pre>
-                                <p class="todolist-date" onclick="modifyDateOnClickHandle">${todo.createDate}</p>
+                                <p class="todolist-date" onclick="modifyDateOnClickHandle(this);">${todo.createDate}</p>
                                 <div class="edit-button" value="${todo.id}">
                                 <i class="fa-solid fa-pen" onclick="modifyTodoOnClickHandle(this);"> </i> </div>
 							</div>
@@ -208,25 +217,13 @@ class TodoListService { //메서드모음
         const itemCenter = document.querySelector(`#item-center${todoObj.id}`);
 
         itemCenter.innerHTML = `
-            <input type="text" class="todolist-content" value="${todoObj.todoContent}" onkeyup="modifyTodoOnKeyUpHandle(event);" autofocus>
+            <input type="text" class="todolist-content" onkeyup="modifyTodoOnKeyUpHandle(event);">
             <p class="todolist-date">${todoObj.createDate}</p>
             <div class="edit-button" value="${todoObj.id}">
             <i class="fa-solid fa-pen" onclick="modifyTodoOnClickHandle(this);"> </i> </div>
-`
-    }
-    
-
-    //pre->input:text로 바꿈
-    modifyTodoContents(id) {
-        const todoObj = this.getTodoById(id);
-        const itemCenter = document.querySelector(`#item-center${todoObj.id}`);
-
-        itemCenter.innerHTML = `
-            <input type="text" class="todolist-content" value="${todoObj.todoContent}" onkeyup="modifyTodoOnKeyUpHandle(event);" autofocus>
-            <p class="todolist-date">${todoObj.createDate}</p>
-            <div class="edit-button" value="${todoObj.id}">
-            <i class="fa-solid fa-pen" onclick="modifyTodoOnClickHandle(this);"> </i> </div>
-`
+        `
+        itemCenter.querySelector('.todolist-content').value = todoObj.todoContent;
+        itemCenter.querySelector('.todolist-content').focus();
     }
     
     //삭제하면 * 휴지통 이동 needed.
@@ -240,7 +237,6 @@ class TodoListService { //메서드모음
     }
 
     //id로 해당 아이디를 가진 todo객체를 리턴
-    //id로 해당 아이디를 가진 todo객체를 리턴
     getTodoById(id) {
         //필터 : 괄호 안의 조건에 맞는 녀석만 배열에 넣어줌, 조건에 맞는 놈이 하나니까 0번 인덱스를 참조.)
             return this.todoList.filter(todo => todo.id === parseInt(id))[0];
@@ -248,7 +244,7 @@ class TodoListService { //메서드모음
     }
 
     //기존 List의 값을 변경 후 저장/업뎃
-    setTodo(todoObj) {
+    setContent(todoObj) {
         const newTodoContent = document.querySelector(`#item-center${todoObj.id} .todolist-content`).value;
         const todo = this.getTodoById(todoObj.id);
         //공백이거나 기존의값과 같을 때
@@ -288,6 +284,16 @@ class TodoListService { //메서드모음
         this.updateTodoList();
     }
 
+    setDate(todoObj) {
+        for(let i = 0; i < this.todoList.length; i++) {
+            if(this.todoList[i].id === todoObj.id) {
+                this.todoList[i] = todoObj;
+                break;
+            }
+        }
+        this.saveLocalStorage();
+        this.updateTodoList();
+    }
 
 
     
