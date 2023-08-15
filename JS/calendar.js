@@ -3,7 +3,7 @@ const monthDisplay = document.querySelector(".calendar-month");
 
 // 현재 날짜와 시간
 let calendarDate = new Date();
-
+let selectedDateElement = null;//이벤트때 클래스스타일지우는 용도
 
 function showCalendar() {
     const firstDay = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), 1);
@@ -26,14 +26,16 @@ function showCalendar() {
         const contentText = document.createElement("span");
 
         contentText.textContent = currentDate.getDate(); //1 ~ 말일
-        //날짜클릭시 이벤트 실행
-        contentText.addEventListener("click", () => {
-            handleDateClick(currentDate.getDate());
+        //날짜클릭시 이벤트(한 셀마다 부여)
+        contentText.addEventListener("click", (event) => {
+            const clickDate = new Date(`${calendarDate.getFullYear()}-${calendarDate.getMonth() + 1}-${parseInt(contentText.textContent)}`);
+            console.log("위 : "+ event);
+            handleDateOnClickEvent(DateUtils.toStringByFormatting(clickDate,), event); // "yyyy-mm-dd" 형식으로 date보냄
         });
 
         content.appendChild(contentText); //content div에는 날짜를 넣
         cell.appendChild(content); //셀에는 content div를 넣
-        weekRow.appendChild(cell); 
+        weekRow.appendChild(cell);
         // 토요일 or 막날이면 다음 주로 넘김
         if (currentDate.getDay() === 6 || currentDate.getTime() === lastDay.getTime()) {
             calendarBody.appendChild(weekRow);
@@ -49,24 +51,37 @@ function showCalendar() {
     monthDisplay.textContent = `${calendarDate.getFullYear()}년 ${calendarDate.getMonth() + 1}월`;
 }
 
-//날짜를 눌렀을 때
-function handleDateClick(date) {
+//날짜를 눌렀을 때 이벤트
+const handleDateOnClickEvent = (date, event) => {
+    TodoListService.getInstance().viewTodoBySelectedDate(date);
+
+    if (selectedDateElement) {
+        selectedDateElement.classList.remove("select");
+    } //과거의 클릭 요소 클래스를 지움
+    event.target.classList.add("select"); //현재거에 추가
+    selectedDateElement = event.target; //나중엔 과거가 될 현재의 요소
 }
 
-// 이전 달 버튼에 클릭 이벤트 추가
-document.getElementById("beforebtn").addEventListener("click", beforeMonth);
+const viewAllPeriodOnClickHandle = (target) => {
+    TodoListService.getInstance().viewAllPeriod();
+    if (selectedDateElement) {
+        selectedDateElement.classList.remove("select");
+    }
+    target.classList.add("select");
+    selectedDateElement = target;
 
-// 현재 날짜의 달에 -1한 후 출력
-function beforeMonth() {
+}
+
+// 이전 달/다음달 버튼에 클릭 이벤트 추가
+document.getElementById("beforebtn").addEventListener("click", beforeMonth);
+function beforeMonth() { // 현재 날짜의 달에 -1한 후 출력
     calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth() - 1, calendarDate.getDate());
     showCalendar();
 }
-
 document.getElementById("nextbtn").addEventListener("click", nextMonth);
 function nextMonth() {
     calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth() + 1, calendarDate.getDate());
     showCalendar();
 }
-
-
 showCalendar();
+

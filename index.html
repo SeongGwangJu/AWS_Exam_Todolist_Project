@@ -31,7 +31,7 @@
                         <i class="fa-regular fa-calendar"></i>
                         <button id="beforebtn" class="calendar-before-button cal-btn">
                             <i class="fa-solid fa-chevron-left fa-lg"></i></button>
-                        <span class="calendar-month"></span>
+                        <span class="calendar-month" onclick="viewAllPeriodOnClickHandle(this);"></span>
                         <button id="nextbtn" class="calendar-next-button cal-btn">
                             <i class="fa-solid fa-chevron-right fa-lg"></i></button>
                     </div>
@@ -68,11 +68,11 @@
                         <div class="todo-current">
                             <div class="remaining-todo"></div>
                             <div class="todo-view">
-                                <span class="view-all "  onclick="selectAllOnClickHandle(this)">All</span>
-                                <span class="view-active " onclick="selectActiveOnClickHandle(this)">Active</span>
-                                <span class="view-completed " onclick="selectCompletedOnClickHandle(this)">Completed</span>
+                                <span class="view-all "  onclick="viewAllOnClickHandle(this)">All</span>
+                                <span class="view-active " onclick="viewActiveOnClickHandle(this)">Active</span>
+                                <span class="view-completed " onclick="viewCompletedOnClickHandle(this)">Completed</span>
                             </div>
-                            <div class="clear-completed">clear</div>
+                            <div class="clear-completed" onclick="clearCompletedOnClickHandle(this);">Clear</div>
                     </footer>
             </main>
             <div class ="modal invisible">
