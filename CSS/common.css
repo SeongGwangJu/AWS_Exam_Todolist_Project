@@ -4,7 +4,6 @@
     font-size: 0.875em;
     color: white;
     font-family: 'Noto Sans KR', sans-serif;
-    
 }
 
 .root{
@@ -53,6 +52,21 @@
 
 .invisible {
     display: none !important;
+}
+
+btn {
+    border: 1px solid cyan; 
+    /* 색 : dbdbdb로 바꿔야함 */
+    border-radius: 4px;
+    padding: 5px 10px;
+    background-color: white;
+    font-weight: 600;
+    cursor:pointer;
+}
+
+/* 눌렀을 때 */
+btn:active { 
+    background-color: #eee;
 }
 
 

@@ -1,0 +1,77 @@
+.sidebar {
+  transition: left 0.5s ease;
+  /* linear / ease / ease-in / ease-out / ease-in-out 등이 있음.  */
+  position: absolute;
+  top: 0px;
+  left: -200px;
+  border-right: 1px solid #dbdbdb;
+  width: 200px;
+  height: 100%;
+  background-color: white;
+  
+}
+.isSidebarOpen {
+  left:0px;
+}
+.sidebar-toggle-button {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:1px solid #dbdbdb;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 3px 1px;
+  height: 50px;
+  font-size: 10px;
+  background-color: #fafafa;
+}
+
+.sidebar-toggle-button:active {
+  background-color: #dbdbdb;
+}
+
+.sidebar-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 2.5px solid #dbdbdb;
+  padding: 10px;
+  height: 60px;
+  background-image: linear-gradient(to bottom right,
+   white, cyan) ;
+  font-size: 20px;
+  font-weight: 700;
+}
+.sidebar-menu-list {
+  border-top: 1px solid #dbdbdb;
+}
+
+.menu-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+  height: 40px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.menu-items:hover {
+  background-color: #eee;
+}
+
+.menu-items:active {
+  background-color: #dbdbdb;
+}
+
+.isMenuSelected {
+  background-color: #fafafa;
+}
+
+

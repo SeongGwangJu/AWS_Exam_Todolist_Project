@@ -127,11 +127,16 @@ class TodoListService { //메서드모음
 
     //todoList의 List를 innerHTML로 화면에 뿌림.
     updateTodoList() {
-        this.updateInnerHTML(this.ListFilter()); //필터링한 List를 출력
+        this.updateInnerHTML(this.ListFilter()); //필터링한리스트를 받아와서 출력
+        
         // 할 일이 몇개 남았는지 표시
         document.querySelector(".remaining-todo").innerHTML = `
-            <span class = remaining-todo-number>${this.todoList.filter(todo => !todo.completStatus).length}</span>
-            <span> tasks left </span>`
+        <span class = remaining-todo-number>${this.todoList.length}</span>
+        <span>개 중</span>
+        <span class = remaining-todo-number>${this.todoList.filter(todo => todo.completStatus).length}</span>
+        <span>개 완료</span>
+
+            `
     }
 
     //todoList를 가공
@@ -290,7 +295,7 @@ class TodoListService { //메서드모음
         this.updateTodoList();
     }
 
-    //todo-view
+    //전체/완료/미완료 조회
     viewAllTodo() {
         this.completStatusFilter = "all";
         this.updateTodoList();
@@ -303,12 +308,17 @@ class TodoListService { //메서드모음
         this.completStatusFilter = "completed";
         this.updateTodoList();
     }
+
+    //클릭한 날짜로 조회
     viewTodoBySelectedDate(date) {
+        this.completStatusFilter = "all";
         console.log(date);
         this.clickedDate = date;
         this.updateTodoList();
     }
+    //캘린더 로고 누르면 전체조회
     viewAllPeriod() {
+        this.completStatusFilter = "all";
         this.clickedDate = "";
         this.updateTodoList();
     }
@@ -331,8 +341,4 @@ class TodoListService { //메서드모음
             this.removeTodo(todo.id);
         });
     }
-
-
-    
-
 }

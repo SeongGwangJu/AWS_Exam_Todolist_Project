@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/CSS/reset.css">
     <link rel="stylesheet" href="/CSS/common.css">
     <link rel="stylesheet" href="/CSS/calendar.css">
@@ -17,8 +21,9 @@
         }
     </style>
 </head>
+
 <body>
-    <div class = "root">
+    <div class="root">
         <aside class="sidebar">
             <button class="sidebar-toggle-button">
                 <i class="fa-solid fa-bars"></i>
@@ -28,10 +33,10 @@
             <main class="main-container">
                 <div class="calendar-container">
                     <div class="calendar-info-container">
-                        <i class="fa-regular fa-calendar"></i>
+                        <i class="fa-regular fa-calendar select" onclick="viewAllPeriodOnClickHandle(this);"></i>
                         <button id="beforebtn" class="calendar-before-button cal-btn">
                             <i class="fa-solid fa-chevron-left fa-lg"></i></button>
-                        <span class="calendar-month" onclick="viewAllPeriodOnClickHandle(this);"></span>
+                        <span class="calendar-month"></span>
                         <button id="nextbtn" class="calendar-next-button cal-btn">
                             <i class="fa-solid fa-chevron-right fa-lg"></i></button>
                     </div>
@@ -51,14 +56,13 @@
                             <tbody id="calendar-body" class="calendar-tbody"></tbody>
                         </table>
                     </div>
-                        
                 </div>
                 <div class="todo-container">
                     <h1 class="todo-title">T O D O</h1>
                     <header>
                         <div class="todolist-header-items">
-                            <input type="text" class="text-input w-f"
-                            placeholder="Enter to add..." onkeyup="addTodoOnKeyUpHandle(event);" autofocus>
+                            <input type="text" class="text-input w-f" placeholder="Enter to add..."
+                                onkeyup="addTodoOnKeyUpHandle(event);" autofocus>
                         </div>
                     </header>
                     <ul class="todolist-main-container">
@@ -68,19 +72,21 @@
                         <div class="todo-current">
                             <div class="remaining-todo"></div>
                             <div class="todo-view">
-                                <span class="view-all "  onclick="viewAllOnClickHandle(this)">All</span>
+                                <span class="view-all " onclick="viewAllOnClickHandle(this)">All</span>
                                 <span class="view-active " onclick="viewActiveOnClickHandle(this)">Active</span>
-                                <span class="view-completed " onclick="viewCompletedOnClickHandle(this)">Completed</span>
+                                <span class="view-completed "
+                                    onclick="viewCompletedOnClickHandle(this)">Completed</span>
                             </div>
                             <div class="clear-completed" onclick="clearCompletedOnClickHandle(this);">Clear</div>
                     </footer>
+                </div>
             </main>
-            <div class ="modal invisible">
+            <div class="modal invisible">
             </div>
         </div>
-        
-            </div>
-        </div>
+
+    </div>
+    </div>
     </div>
     <script src="./JS/index.js"></script>
     <script src="./JS/routes.js"></script>
@@ -89,7 +95,8 @@
     <script src="./JS/sidebar.js"></script>
     <script src="./JS/utils.js"></script>
     <script src="./JS/modal.js"></script>
-    
+
 
 </body>
+
 </html>

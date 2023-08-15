@@ -53,13 +53,15 @@ function showCalendar() {
 
 //날짜를 눌렀을 때 이벤트
 const handleDateOnClickEvent = (date, event) => {
-    TodoListService.getInstance().viewTodoBySelectedDate(date);
-
+    TodoListService.getInstance().viewTodoBySelectedDate(date); //날짜별조회메서드 실행
     if (selectedDateElement) {
         selectedDateElement.classList.remove("select");
-    } //과거의 클릭 요소 클래스를 지움
-    event.target.classList.add("select"); //현재거에 추가
-    selectedDateElement = event.target; //나중엔 과거가 될 현재의 요소
+    } else { //다른 클릭 요소 스타일들 지움
+        document.querySelector(".fa-calendar").classList.remove("select");
+    }
+    event.target.classList.add("select"); //누른거엔 추가
+    selectedDateElement = event.target; //다음 클릭시 이번에 누른건 지워지도록 저장
+    
 }
 
 const viewAllPeriodOnClickHandle = (target) => {
