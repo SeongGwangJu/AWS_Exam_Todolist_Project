@@ -123,11 +123,11 @@ class TodoListService { //메서드모음
         //필터링한리스트를 받아와서 출력
         this.updateInnerHTML(this.ListFilter()); 
 
-        // 할 일이 몇개 남았는지 표시
+        // 보여지는 todolist안에서, 할 일이 몇개 남았는지 표시
         document.querySelector(".remaining-todo").innerHTML = `
-        <span class = remaining-todo-number>${this.todoList.length}</span>
+        <span class = remaining-todo-number>${this.ListFilter().length}</span>
         <span>개 중</span>
-        <span class = remaining-todo-number>${this.todoList.filter(todo => todo.completStatus).length}</span>
+        <span class = remaining-todo-number>${this.ListFilter().filter(todo => todo.completStatus).length}</span>
         <span>개 완료</span>
             `
     }
@@ -322,9 +322,9 @@ class TodoListService { //메서드모음
         this.updateTodoList();
     }
 
-    //완료상태의 todo를 모두 지움
+    //지정한 날짜에서 완료상태의 todo를 모두 지움
     clearCompleted() {
-        const activeTodoList = this.todoList.filter(todo => !!todo.completStatus);
+        const activeTodoList = this.ListFilter().filter(todo => !!todo.completStatus);
         activeTodoList.forEach((todo) => {
             this.removeTodo(todo.id);
         });
