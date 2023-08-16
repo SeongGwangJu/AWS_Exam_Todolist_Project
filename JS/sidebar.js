@@ -12,7 +12,6 @@ const sidebarToggleButtonOnClickHandle = () => {
 }
 
 const sidebarMenuOnClickHandle = (target) => {
-  console.log(target.innerHTML);
   switch(target.innerHTML) {
       case "시작하기" :
           Routes.getInstance().routeState = "welcome";

@@ -22,12 +22,9 @@ const modifyTodoOnClickHandle = (target) => {
 const modifyTodoOnKeyUpHandle = (event) => {
     if(event.keyCode === 13) { //엔터누르면 수정
         const todoId = event.target.parentElement.getAttribute("value");
-        TodoListService.getInstance().setContent(TodoListService.getInstance().getTodoById(todoId));
-    }
-
-    if(event.keyCode === 27) { //ESC누르면 수정안함
-        TodoListService.getInstance().updateTodoList();
-    }
+        TodoListService.getInstance().setContent(TodoListService.getInstance().getTodoById(todoId));}
+    //ESC누르면 수정안함
+    if(event.keyCode === 27) { TodoListService.getInstance().updateTodoList(); }
 }
 
 //view 3종 클릭시 이벤트
@@ -51,12 +48,10 @@ const clearCompletedOnClickHandle = (target) => {
 //todo 객체 생성, addTodo()로 패스(addTodo: ArrayList에 넣음)
 const generateTodoObj = () => {
     const todoContent = document.querySelector(".todolist-header-items .text-input").value;
-
     if(!todoContent) {
         alert("값을 입력해주세요.");
         return;
     }
-
     const todoObj = {
         id: 0,
         todoContent: todoContent,
@@ -69,7 +64,6 @@ const generateTodoObj = () => {
 
 
 class TodoListService { //메서드모음
-    
     todoList = new Array();
     viewTypeFilteredList = new Array();
     clickedDate="";
@@ -126,15 +120,15 @@ class TodoListService { //메서드모음
 
     //todoList의 List를 innerHTML로 화면에 뿌림.
     updateTodoList() {
-        this.updateInnerHTML(this.ListFilter()); //필터링한리스트를 받아와서 출력
-        
+        //필터링한리스트를 받아와서 출력
+        this.updateInnerHTML(this.ListFilter()); 
+
         // 할 일이 몇개 남았는지 표시
         document.querySelector(".remaining-todo").innerHTML = `
         <span class = remaining-todo-number>${this.todoList.length}</span>
         <span>개 중</span>
         <span class = remaining-todo-number>${this.todoList.filter(todo => todo.completStatus).length}</span>
         <span>개 완료</span>
-
             `
     }
 
@@ -166,9 +160,8 @@ class TodoListService { //메서드모음
         } else { //클릭된날짜가 있으면
             return this.viewTypeFilteredList.filter(todo => todo.createDate === this.clickedDate);
         }
-
     }
-    removeAllViewTypeStyle() { //스타일을 지움
+    removeAllViewTypeStyle() { //뷰타입 전체 스타일을 지움
         document.querySelector(".view-all").classList.remove("selected");
         document.querySelector(".view-active").classList.remove("selected");
         document.querySelector(".view-completed").classList.remove("selected");
@@ -218,8 +211,6 @@ class TodoListService { //메서드모음
             }
         });
     }
-
-
     //////// add, update 끝 ////////
 
     //List 체크박스의 상태변경 + list 변경
@@ -229,8 +220,6 @@ class TodoListService { //메서드모음
                 this.todoList[index].completStatus = status;
             }
         });
-
-
         this.saveLocalStorage();
     }
 
@@ -263,7 +252,6 @@ class TodoListService { //메서드모음
     getTodoById(id) {
         //필터 : 괄호 안의 조건에 맞는 녀석만 배열에 넣어줌, 조건에 맞는 놈이 하나니까 0번 인덱스를 참조.)
             return this.todoList.filter(todo => todo.id === parseInt(id))[0];
-        
     }
 
     //기존 List의 값을 변경 후 저장/업뎃
@@ -277,13 +265,14 @@ class TodoListService { //메서드모음
         }
         if(!newTodoContent) {
             alert("값을 입력해주세요.");
-            
             return;
         }
+        //받아온 객체에 값을 옮김
         todoObj = {
             ...todo,
             todoContent: newTodoContent
         }
+        //todoList에 위에 객체를 대입함
         for(let i = 0; i < this.todoList.length; i++) {
             if(this.todoList[i].id === todoObj.id) {
                 this.todoList[i] = todoObj;
@@ -311,7 +300,6 @@ class TodoListService { //메서드모음
     //클릭한 날짜로 조회
     viewTodoBySelectedDate(date) {
         this.completStatusFilter = "all";
-        console.log(date);
         this.clickedDate = date;
         this.updateTodoList();
     }
@@ -322,6 +310,7 @@ class TodoListService { //메서드모음
         this.updateTodoList();
     }
 
+    //모달창에서 받아온 날짜로바꿈
     setDate(todoObj) {
         for(let i = 0; i < this.todoList.length; i++) {
             if(this.todoList[i].id === todoObj.id) {
@@ -333,10 +322,10 @@ class TodoListService { //메서드모음
         this.updateTodoList();
     }
 
+    //완료상태의 todo를 모두 지움
     clearCompleted() {
         const activeTodoList = this.todoList.filter(todo => !!todo.completStatus);
         activeTodoList.forEach((todo) => {
-            console.log(todo.id);
             this.removeTodo(todo.id);
         });
     }

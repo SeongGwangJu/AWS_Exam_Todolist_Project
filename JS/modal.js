@@ -24,8 +24,6 @@ const modifyDate = (id) => {
     const newTodoDate = document.querySelector(".modal-main .date-input").value;
     const todo = TodoListService.getInstance().getTodoById(id);
     //공백이거나 기존의값과 같을 때
-    console.log("todo.createDate : " + todo.createDate)
-    console.log("newTodoDate : " + newTodoDate)
     if(todo.createDate === newTodoDate || !newTodoDate) {
         alert("값을 올바르게 수정해주세요");
     }

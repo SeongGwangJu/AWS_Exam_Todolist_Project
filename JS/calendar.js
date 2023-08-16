@@ -29,7 +29,6 @@ function showCalendar() {
         //날짜클릭시 이벤트(한 셀마다 부여)
         contentText.addEventListener("click", (event) => {
             const clickDate = new Date(`${calendarDate.getFullYear()}-${calendarDate.getMonth() + 1}-${parseInt(contentText.textContent)}`);
-            console.log("위 : "+ event);
             handleDateOnClickEvent(DateUtils.toStringByFormatting(clickDate,), event); // "yyyy-mm-dd" 형식으로 date보냄
         });
 
@@ -41,13 +40,9 @@ function showCalendar() {
             calendarBody.appendChild(weekRow);
             weekRow = document.createElement("tr");
         }
-
-        
         //Day++;
         currentDate.setDate(currentDate.getDate() + 1);
-
     }
-
     monthDisplay.textContent = `${calendarDate.getFullYear()}년 ${calendarDate.getMonth() + 1}월`;
 }
 
@@ -61,9 +56,10 @@ const handleDateOnClickEvent = (date, event) => {
     }
     event.target.classList.add("select"); //누른거엔 추가
     selectedDateElement = event.target; //다음 클릭시 이번에 누른건 지워지도록 저장
-    
+
 }
 
+//캘린더 아이콘 누르면 전체 날짜로 조회하는 이벤트.
 const viewAllPeriodOnClickHandle = (target) => {
     TodoListService.getInstance().viewAllPeriod();
     if (selectedDateElement) {
