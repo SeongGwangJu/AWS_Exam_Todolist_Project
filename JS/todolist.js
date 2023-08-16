@@ -17,7 +17,6 @@ const removeTodoOnClickHandle = (target) => {
 
 //수정버튼 또는 todo클릭시 수정할 텍스트 입력받고 반영함
 const modifyTodoOnClickHandle = (target) => {
-    console.log(target)
     TodoListService.getInstance().modifyTodoContents(target.parentElement.getAttribute("value"));
 }
 const modifyTodoOnKeyUpHandle = (event) => {

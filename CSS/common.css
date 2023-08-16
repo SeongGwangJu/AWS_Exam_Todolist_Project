@@ -14,18 +14,18 @@
     overflow:hidden;
 }
 
-.sidebar{
+.sidebar2{
     display: inline;
     position: relative;
     background-color: #00000000;
     display: inline-block;
 }
 
-.fa-bars{
+.fa-bars2{
     font-size: 40px;
 }
 
-.sidebar-toggle-button {
+.sidebar-toggle-button{
     width: 80px;
     height: 80px;
     background-color: #00000000;
@@ -44,6 +44,8 @@
 }
 
 .main-container {
+    /* 사이드바 아이콘이 사라져서 */
+    margin-top: 60px; 
     display: flex;
     margin-right: 10px;
     width: 100%;

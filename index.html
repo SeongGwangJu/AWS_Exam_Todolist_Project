@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/CSS/reset.css">
-    <link rel="stylesheet" href="/CSS/common.css">
-    <link rel="stylesheet" href="/CSS/calendar.css">
+        <link rel="stylesheet" href="/CSS/reset.css">
+        <link rel="stylesheet" href="/CSS/common.css">
+        <link rel="stylesheet" href="/CSS/calendar.css">
+        <link rel="stylesheet" href="/CSS/welcome.css">
+        <link rel="stylesheet" href="/CSS/sidebar.css">
     <link rel="stylesheet" href="/CSS/list-area.css">
     <link rel="stylesheet" href="/CSS/modal.css">
     <style>
@@ -25,11 +27,21 @@
 <body>
     <div class="root">
         <aside class="sidebar">
-            <button class="sidebar-toggle-button">
-                <i class="fa-solid fa-bars"></i>
+            <button class="sidebar-toggle-button" onclick="sidebarToggleButtonOnClickHandle()"><i class="fa-solid fa-bars"></i></button>
+            <h1 class="sidebar-logo">MyToDo</h1>
+            <ul class="sidebar-menu-list">
+                <li class="menu-items isMenuSelected" onclick="sidebarMenuOnClickHandle(this);">시작하기</li>
+                <li class="menu-items" onclick="sidebarMenuOnClickHandle(this)">TODOLIST</li>
+            </ul>
             </button>
+            <!-- <i class="fa-solid fa-bars"></i> -->
         </aside>
-        <div class="container ">
+
+        <div class="welcome-page-container">
+            <h1 class="welcome-page-title">TODOLIST</h1>
+            <button class="write-link-button" onclick="goToWriteOnClickHandle()">Go to write</button>
+        </div>
+        <div class="container invisible">
             <main class="main-container">
                 <div class="calendar-container">
                     <div class="calendar-info-container">
