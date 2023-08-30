@@ -48,7 +48,7 @@ function showCalendar() {
 
 //날짜를 눌렀을 때 이벤트
 const handleDateOnClickEvent = (date, event) => {
-    TodoListService.getInstance().viewTodoBySelectedDate(date); //날짜별조회메서드 실행
+    TodoListService.getInstance().viewTodoBySelectedDate(date); //날짜별 조회 메서드 실행
     if (selectedDateElement) {
         selectedDateElement.classList.remove("select");
     } else { //다른 클릭 요소 스타일들 지움
@@ -56,7 +56,6 @@ const handleDateOnClickEvent = (date, event) => {
     }
     event.target.classList.add("select"); //누른거엔 추가
     selectedDateElement = event.target; //다음 클릭시 이번에 누른건 지워지도록 저장
-
 }
 
 //캘린더 아이콘 누르면 전체 날짜로 조회하는 이벤트.
@@ -67,7 +66,6 @@ const viewAllPeriodOnClickHandle = (target) => {
     }
     target.classList.add("select");
     selectedDateElement = target;
-
 }
 
 // 이전 달/다음달 버튼에 클릭 이벤트 추가

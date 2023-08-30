@@ -15,6 +15,7 @@ const modifyDateOnKeyUpHandle = (event) => {
         closeModal();
     }
 
+    //입력중 esc클릭시 취소
     if(event.keyCode === 27) {
         closeModal();
     }
@@ -40,12 +41,12 @@ const modifyModal = (todo) => {
             <div class="modal-container ">
             <header class="modal-header">
                 <h1 class="modal-title">
-                    Todo 수정
+                    날짜 수정
                 </h1>
             </header>
             <main class="modal-main" value="${todo.id}">
                 <p class="modal-message">
-                    수정을 원하시는 날짜를 선택해주세요
+                    원하는 날짜를 선택해주세요
                 </p>
                 <input type="date" class="date-input w-f" value="${todo.createDate}" onkeyup="modifyDateOnKeyUpHandle(event);">
             </main>

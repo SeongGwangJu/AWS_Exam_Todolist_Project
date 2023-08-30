@@ -7,25 +7,23 @@
   justify-content: center;
   align-items: center;
   background-color: #ffffff50;
-  
-
 }
 .modal-container {
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   background-color: #fafafa;
 }
+
 .modal-header {
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1.5px solid #dbdbdb;
   padding: 15px 20px;
-  width: 300px;
-  font-size: 3em;
+  width: 100%;
 }
 
 .modal-title {
   text-align: center;
   justify-content: center;
-  font-size: 42px;
+  font-size: 24px;
   font-weight: 700;
   color:black
 }
@@ -37,27 +35,28 @@
   align-items: center;
   border-bottom: 1px solid #dbdbdb;
   padding: 20px;
-  width:400px;
-  height:600px;
-  
+  width:320px;
+  height:150px;
+
 }
 
 .modal-message {
   width: 100%;
   text-align: center;
-  font-size: 30px;
+  font-size: 18px;
   /* 자동줄바꿈 */
   word-wrap: break-word;
-  color:black
+  color:black;
 }
 .modal-main > *:not(modal-main :nth-last-child(1)) {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .date-input {
-  font-size: 36px;
+  font-size: 20px;
   color: black;
 }
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;
