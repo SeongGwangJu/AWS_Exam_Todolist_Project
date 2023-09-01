@@ -65,4 +65,77 @@
 
 ### 코드 미리보기
 
-추후 추가 예정
+##### Todo Data를 화면에 출력하는 updateTodoList 메서드 
+( 페이지 이동시 / todo 추가 후 / 날짜 또는 상태별 조회시)
+
+
+```
+updateTodoList() {
+	this.updateInnerHTML(this.listFilter());
+	this.updateRemainingStatus();
+}
+
+listFilter() {
+	//(1)view-type에 따라 필터링
+	switch (this.completStatusFilter) {
+		case "all":
+			this.viewTypeFilteredList = this.todoList;
+			this.removeAllViewTypeStyle();
+			document.querySelector(".view-all").classList.add("selected");
+			break;
+		case "active":
+			this.viewTypeFilteredList = this.todoList.filter(
+				(todo) => !todo.completStatus
+			);
+			....(중략 : 스타일 변경)
+		case "completed":
+			this.viewTypeFilteredList = this.todoList.filter(
+				(todo) => !!todo.completStatus
+			);
+			...(중략 : 스타일 변경)
+	}
+
+	//(2)클릭한 날짜에 따라 필터링
+	if (this.clickedDate == "") {
+		//클릭된날짜가 없을때(기본값)
+		return this.viewTypeFilteredList;
+	} else {
+		//클릭된날짜가 있으면
+		return this.viewTypeFilteredList.filter(
+			(todo) => todo.createDate === this.clickedDate
+		);
+	}
+}
+//Html요소를 바꿈 => 화면update.
+updateInnerHTML(List) {
+	const todoListMainContainer = document.querySelector(
+		".todolist-main-container"
+	);
+
+	todoListMainContainer.innerHTML = List.map((todo) => {
+		return `
+	<li class="todolist-items">
+						<div class="item-left">
+							<input type="checkbox" id="complet-chkbox${todo.id}" class="complet-chkboxs"
+			${todo.completStatus ? "checked" : ""} value="${
+			todo.id
+		......(중략 : todo 표시부 )
+	}).join("");
+
+
+```
+
+
+```
+
+```
+
+
+```
+
+```
+
+
+```
+
+```
